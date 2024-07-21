@@ -26,7 +26,7 @@ void Point_Negation(struct Point *A, struct Point *S);
 void init_doublingG(struct Point *P);
 // In the header file or before function definitions in keysubtracter.c
 void generate_strpublickey(struct Point *publickey, bool compress, char *dst);
-int compare_publickeys(const struct Point *publickey, const char *target_hex);
+int compare_publickeys(const struct Point *publickey, const char *found_hex);
 
 
 #endif
