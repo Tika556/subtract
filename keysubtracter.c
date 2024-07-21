@@ -26,7 +26,7 @@ const char *EC_constant_N = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD
 const char *EC_constant_P = "fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f";
 const char *EC_constant_Gx = "79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798";
 const char *EC_constant_Gy = "483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8";
-const char *TARGET_PUBLICKEY_HEX = "0258569d50a83544a71a4cbaf4a98e2fc42a4ec8ea06025a9f0a1342ccdfd7d946";
+const char *FOUND_PUBLICKEY_HEX = "0258569d50a83544a71a4cbaf4a98e2fc42a4ec8ea06025a9f0a1342ccdfd7d946";
 
 
 const char *formats[3] = {"publickey","rmd160","address"};
@@ -41,7 +41,7 @@ void set_range(char *param);
 void generate_straddress(struct Point *publickey,bool compress,char *dst);
 void generate_strrmd160(struct Point *publickey,bool compress,char *dst);
 void generate_strpublickey(struct Point *publickey,bool compress,char *dst);
-int compare_publickeys(const mpz_t *publickey, const char *target_hex);
+int compare_publickeys(const mpz_t *publickey, const char *found_hex);
 
 char *str_output = NULL;
 
@@ -60,10 +60,10 @@ int FLAG_HIDECOMMENT = 0;
 int FLAG_LOOK = 0;
 int FLAG_MODE = 0;
 int FLAG_N;
-int compare_publickeys(const mpz_t *publickey, const char *target_hex) {
+int compare_publickeys(const mpz_t *publickey, const char *found_hex) {
     char publickey_hex[128]; // Adjust size as needed
     generate_strpublickey(publickey, FLAG_LOOK == 0, publickey_hex);
-    return strcmp(publickey_hex, target_hex) == 0;
+    return strcmp(publickey_hex, found_hex) == 0;
 }
 uint64_t N = 0,M;
 
@@ -324,8 +324,8 @@ int main(int argc, char **argv)  {
 				mpz_set(sum_publickey.y,dst_publickey.y);
 				mpz_add(sum_key,sum_key,base_key);
 					  // Check if the current public key matches the target
-            if (compare_publickeys(&dst_publickey, TARGET_PUBLICKEY_HEX)) {
-                fprintf(OUTPUT, "Found target public key: %s\n", TARGET_PUBLICKEY_HEX);
+            if (compare_publickeys(&dst_publickey, FOUND_PUBLICKEY_HEX)) {
+                fprintf(OUTPUT, "Found target public key: %s\n", FOUND_PUBLICKEY_HEX);
                 break; // Exit the loop
 	    }
 			}
