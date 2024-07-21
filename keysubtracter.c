@@ -41,6 +41,7 @@ void set_range(char *param);
 void generate_straddress(struct Point *publickey,bool compress,char *dst);
 void generate_strrmd160(struct Point *publickey,bool compress,char *dst);
 void generate_strpublickey(struct Point *publickey,bool compress,char *dst);
+int compare_publickeys(const mpz_t *publickey, const char *target_hex);
 
 char *str_output = NULL;
 
