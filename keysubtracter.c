@@ -537,6 +537,7 @@ void generate_strpublickey(struct Point *publickey,bool compress,char *dst)	{
 	else	{
 		gmp_snprintf(dst,131,"04%0.64Zx%0.64Zx",publickey->x,publickey->y);
 	}
+}
 void mpz_to_point(mpz_t *mpz_value, struct Point *point) {
     // Implement conversion logic based on your application's requirements
     // This might involve setting x and y coordinates of the Point struct
