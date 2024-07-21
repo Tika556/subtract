@@ -41,7 +41,7 @@ void set_range(char *param);
 void generate_straddress(struct Point *publickey,bool compress,char *dst);
 void generate_strrmd160(struct Point *publickey,bool compress,char *dst);
 void generate_strpublickey(struct Point *publickey,bool compress,char *dst);
-int compare_publickeys(const mpz_t *publickey, const char *found_hex);
+int compare_publickeys(const mpz_t *publickey, const char *found_publickey_hex);
 
 char *str_output = NULL;
 
@@ -60,7 +60,7 @@ int FLAG_HIDECOMMENT = 0;
 int FLAG_LOOK = 0;
 int FLAG_MODE = 0;
 int FLAG_N;
-int compare_publickeys(const mpz_t *publickey,const char *found_hex) {
+int compare_publickeys(const mpz_t *publickey,const char *found_publickey_hex) {
     char publickey_hex[128]; // Adjust size as needed
     generate_strpublickey(&dst_publickey, FLAG_LOOK == 0, publickey_hex);
     return strcmp(publickey_hex, found_hex) == 0;
