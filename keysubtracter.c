@@ -65,7 +65,7 @@ gmp_randstate_t state;
 
 int main(int argc, char **argv)  {
 	FILE *OUTPUT;
-	char c;
+	int c;
 	uint64_t i = 0;
 	mpz_init_set_str(EC.p, EC_constant_P, 16);
 	mpz_init_set_str(EC.n, EC_constant_N, 16);
@@ -537,12 +537,12 @@ void generate_strrmd160(struct Point *publickey,bool compress,char *dst)	{
 		else	{
 			gmp_snprintf(str_publickey,67,"03%0.64Zx",publickey->x);
 		}
-		hexs2bin(str_publickey,bin_publickey);
+		hexs2bin(str_publickey,(unsigned char *)bin_publickey);
 		sha256(bin_publickey, 33, bin_sha256);
 	}
 	else	{
 		gmp_snprintf(str_publickey,131,"04%0.64Zx%0.64Zx",publickey->x,publickey->y);
-		hexs2bin(str_publickey,bin_publickey);
+		hexs2bin(str_publickey,(unsigned char *)bin_publickey);
 		sha256(bin_publickey, 65, bin_sha256);
 	}
 	RMD160Data((const unsigned char*)bin_sha256,32, bin_rmd160);
@@ -563,12 +563,12 @@ void generate_straddress(struct Point *publickey,bool compress,char *dst)	{
 		else	{
 			gmp_snprintf(str_publickey,67,"03%0.64Zx",publickey->x);
 		}
-		hexs2bin(str_publickey,bin_publickey);
+		hexs2bin(str_publickey,(unsigned char *)bin_publickey);
 		sha256(bin_publickey, 33, bin_sha256);
 	}
 	else	{
 		gmp_snprintf(str_publickey,131,"04%0.64Zx%0.64Zx",publickey->x,publickey->y);
-		hexs2bin(str_publickey,bin_publickey);
+		hexs2bin(str_publickey,(unsigned char *)bin_publickey);
 		sha256(bin_publickey, 65, bin_sha256);
 	}
 	RMD160Data((const unsigned char*)bin_sha256,32, bin_digest+1);
