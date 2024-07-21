@@ -2,6 +2,8 @@
 #define GMPECC_H
 
 #include <gmp.h>
+#include <stdbool.h>
+
 
 struct Point {
     mpz_t x;
