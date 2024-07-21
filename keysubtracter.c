@@ -49,10 +49,6 @@ char str_rmd160[41];
 char str_address[41];
 
 struct Point target_publickey,base_publickey,sum_publickey,negated_publickey,dst_publickey;
-struct Point {
-    mpz_t x;
-    mpz_t y;
-};
 
 int FLAG_RANGE = 0;
 int FLAG_BIT = 0;
