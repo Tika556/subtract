@@ -62,7 +62,7 @@ int FLAG_MODE = 0;
 int FLAG_N;
 int compare_publickeys(const mpz_t *publickey, const char *found_hex) {
     char publickey_hex[128]; // Adjust size as needed
-    generate_strpublickey(publickey, FLAG_LOOK == 0, publickey_hex);
+    generate_strpublickey(&dst_publickey, FLAG_LOOK == 0, publickey_hex);
     return strcmp(publickey_hex, found_hex) == 0;
 }
 uint64_t N = 0,M;
