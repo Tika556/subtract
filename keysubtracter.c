@@ -535,9 +535,10 @@ void generate_strpublickey(struct Point *publickey,bool compress,char *dst)	{
 		gmp_snprintf(dst,131,"04%0.64Zx%0.64Zx",publickey->x,publickey->y);
 	}
 }
-void mpz_to_point(mpz_t *mpz_value, struct Point *point) {
-    // Implement conversion logic based on your application's requirements
-    // This might involve setting x and y coordinates of the Point struct
+int compare_publickeys(const mpz_t *publickey,const char *found_publickey_hex) {
+    char publickey_hex[128]; // Adjust size as needed
+    generate_strpublickey(&dst_publickey, FLAG_LOOK == 0, publickey_hex);
+    return strcmp(publickey_hex, found_hex) == 0;
 }
 
 
